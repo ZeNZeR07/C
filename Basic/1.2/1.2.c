@@ -2,30 +2,33 @@
 
 int main(){
     int score;
-    char *message;
 
     printf("Enter your Score: ");
     scanf("%d", &score);
 
     if(score >= 80){
-        message = "Grade A";
+        printf("Grade A");
 
-    }else if(score >= 70){
-        message = "Grade B";
+    }
+    else if(score >= 70){
+        printf("Grade B");
 
-    }else if(score >= 60){
-        message = "Grade C";
+    }
+    else if(score >= 60){
+        printf("Grade C");
 
-    }else if(score >= 50){
-        message = "Grade D";
+    }
+    else if(score >= 50){
+        printf("Grade D");
 
-    }else if(score >= 0){
-        message = "Grade F";
+    }
+    else if(score >= 0){
+        printf("Grade F");
 
-    }else{
-        message = "Grade is incorrect";
+    }
+    else{
+        printf("Grade is incorrect");
     }
 
-    printf("%s\n", message);
-    
+    return 0;
 }
