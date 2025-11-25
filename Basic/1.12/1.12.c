@@ -13,7 +13,7 @@ int main() {
 
 
     if (planCode == 1) {       
-            
+
         totalBill = 299.0;
 
         if (dataUsage_GB > 10.0) {
@@ -37,5 +37,6 @@ int main() {
     printf("Total Bill: %.2f\n", totalBill);
 
     return 0;
+
 
 }
