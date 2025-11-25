@@ -15,7 +15,7 @@ int main() {
 
 
     while (principal > 0 && month < 10) {
-        
+
         interest = principal * INTEREST_RATE;
         principal = principal + interest;
 
@@ -26,7 +26,7 @@ int main() {
         principal = principal - monthlyPayment;
         month++;
 
-        printf("Month %d: Remaining %.2f\n", month, principal);
+        printf("Month %d: Remaining  %.2f\n", month, principal);
     }
 
     if (principal > 0)
