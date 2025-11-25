@@ -1,9 +1,7 @@
 #include <stdio.h>
 
 int main(){
-    int  num1,num2;
-    int operationCode;
-    int result;
+    int  num1, num2, operationCode, result;
 
     
   
@@ -36,7 +34,7 @@ int main(){
             break;
 
         case 4:
-        
+
             result = num1 / num2; 
             printf("Result = %d\n", result);
             break;
