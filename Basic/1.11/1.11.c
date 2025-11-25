@@ -7,15 +7,17 @@ int main() {
     float vatAmount = 0.0;
 
 
+
     printf("Enter price before VAT: ");
     scanf("%f", &price_before_vat);
 
     printf("Enter category code (1.Standard, 2.Zero Rated, 3.Luxury): ");
     scanf("%d", &categoryCode);
 
+
     if (categoryCode == 1) {  
 
-        totalbill = price_before_vat * 1.07;
+        totalbill = price_before_vat * 1.07 ;
 
     }
 
@@ -47,4 +49,5 @@ int main() {
     return 0;
 
 
+    
 }
