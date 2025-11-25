@@ -3,9 +3,9 @@
 int main() {
     int number;
 
-    
+
     do {
-        printf("Enter a number (1-10):");
+        printf("Enter a number (1-10): ");
         scanf("%d", &number);
 
 
