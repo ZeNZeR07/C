@@ -35,16 +35,10 @@ int main(){
             printf("Result = %d\n", result);
             break;
 
-        case 4: 
-
-            if (num2 == 0) {
-                printf("Cannot divide by zero\n");
-            } 
-            else {
-                result = num1 / num2; 
-                printf("Result = %d\n", result);
-            }
-
+        case 4:
+        
+            result = num1 / num2; 
+            printf("Result = %d\n", result);
             break;
 
         default:
@@ -54,10 +48,7 @@ int main(){
 
     }
 
-
     return 0;
 
 
 }
-    
-
