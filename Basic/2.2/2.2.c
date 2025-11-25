@@ -4,13 +4,16 @@ int main() {
     int N, i, quantity;
     float unitPrice, itemCost, grandTotal = 0.0;
 
-    printf("Enter number of items: ");
+
+    printf("Enter number of items : ");
     scanf("%d", &N);
 
     for (i = 0; i < N; i++) {
 
+
         printf("Enter unit price for item: ");
         scanf("%f", &unitPrice);
+
 
         printf("Enter quantity for item: ");
         scanf("%d", &quantity);
@@ -22,11 +25,12 @@ int main() {
         }
 
         grandTotal += itemCost;
+        
     }
 
-    printf("Grand Total: %.2f\n", grandTotal);
+    printf("Grand Total: %.2f\n ", grandTotal);
 
     return 0;
 
-    
+
 }
