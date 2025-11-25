@@ -4,6 +4,7 @@ int main() {
     int N;      
     int i;      
 
+    printf("Enter Hello Count: ");
     scanf("%d", &N);
 
   
