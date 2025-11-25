@@ -33,8 +33,7 @@ int main() {
     else {
 
         printf("Invalid Category\n");
-        printf("VAT Amount: %.2f\n", vatAmount);
-        printf("Total Price: %.2f\n", totalbill);
+        
         return 0;
 
     }
@@ -44,7 +43,7 @@ int main() {
     printf("VAT Amount: %.2f\n", vatAmount);
     printf("Total Price: %.2f\n", totalbill);
 
-    
+
     return 0;
 
 
