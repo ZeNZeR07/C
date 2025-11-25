@@ -7,13 +7,15 @@ int main() {
     const float INTEREST_RATE = 0.01;
     const float PENALTY = 10.0;
 
-    printf("Enter Principal Amount: ");
+    printf("Principal Amount: ");
     scanf("%f", &principal);
 
-    printf("Enter Monthly Payment Amount: ");
+    printf("Monthly Payment Amount: ");
     scanf("%f", &monthlyPayment);
 
+
     while (principal > 0 && month < 10) {
+        
         interest = principal * INTEREST_RATE;
         principal = principal + interest;
 
@@ -38,5 +40,5 @@ int main() {
 
     return 0;
 
-    
+
 }
