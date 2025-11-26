@@ -1,35 +1,29 @@
 #include <stdio.h>
 
 int main() {
-    int N , i;
+    int N;               
     int countFizzBuzz = 0;
     int countFizz = 0;
     int countBuzz = 0;
     int countOther = 0;
 
-    printf("Enter Count : ");
-    scanf("%d", &N);
+    printf("Enter Count: ");
+    if (scanf("%d", &N) != 1 || N < 1) {
+        return 1;       
+    }
 
-    for ( int i = 0; i < N; i++ ){
-      
+ 
+    for (int i = 1; i <= N; i++) {
 
-        if (i % 3 == 0 && i % 5 == 0 ){
+        if (i % 3 == 0 && i % 5 == 0) {
             countFizzBuzz++;
-
-        }
-        else if (i % 3 == 0){
+        } else if (i % 3 == 0) {
             countFizz++;
-
-        }
-        else if (i % 5 == 0){
+        } else if (i % 5 == 0) {
             countBuzz++;
-
-        }
-        else {
+        } else {
             countOther++;
-
         }
-
     }
 
     printf("Count FizzBuzz (by 15): %d\n", countFizzBuzz);
@@ -38,5 +32,4 @@ int main() {
     printf("Count Other: %d\n", countOther);
 
     return 0;
-    
 }
