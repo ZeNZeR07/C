@@ -1,20 +1,27 @@
 #include <stdio.h>
 
 struct Product {
-    char name[50];
-    int productId;
-    float price;
+    int itemId;
+    float unitPrice;
+    int quantity;
 };
 
 int main() {
-    struct Product item;
+    int N, i;
+    float grandTotal = 0.0;
 
-    if (scanf("%d %f %s", &item.productId, &item.price, item.name) != 3) {
+    if(scanf("%d", &N) != 1){
         return 1;
     }
 
-    printf("ID: %d, Price: %.2f, Name: %s", item.productId, item.price, item.name);
+    struct Product products[N];
 
-    return 0;
+    for(i = 0; i < N; i++){
+        if(scanf("%d %f %d", &products[i].itemId, &products[i].unitPrice, &products[i].quantity) != 3){
+            return 1;
+        }
+        
+        grandTotal += products[i].unitPrice * products[i].quantity;
+    }
+
 }
-1
