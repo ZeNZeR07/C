@@ -10,6 +10,7 @@ int main(){
     printf("Enter Number of Students: ");
     scanf("%d", &N);
     for ( i = 0; i < N; i++ ){
+        
         printf("Enter Student ID: ");
         scanf("%d", &studenId);
 
@@ -25,8 +26,10 @@ int main(){
         attendancePercentage = ((totalClasses - absentClasses) / totalClasses * 100);
 
         if(score >= 50 && attendancePercentage >= 75){
+
             passCount++;
             printf("Student %d: PASS\n", studenId);
+
         }
         else {
 
@@ -46,11 +49,12 @@ int main(){
         }
         
     }
+
     printf("---Summary---\n");
     printf("Total Pass: %d\n", passCount);
     printf("Total Fail: %d\n", failCount);
 
     return 0;
 
-    
+
 }
