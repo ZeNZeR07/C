@@ -10,17 +10,20 @@ int main() {
     printf("Enter Count : ");
     scanf("%d", &N);
 
-    for (int i = 0; i < N; i++){
+    for ( int i = 0; i < N; i++ ){
       
 
         if (i % 3 == 0 && i % 5 == 0 ){
             countFizzBuzz++;
+
         }
         else if (i % 3 == 0){
             countFizz++;
+
         }
         else if (i % 5 == 0){
             countBuzz++;
+
         }
         else {
             countOther++;
