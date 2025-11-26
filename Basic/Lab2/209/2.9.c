@@ -4,58 +4,72 @@ int main() {
     int initialStock, N, cmdCode, quantity;
     int currentStock;
     float PENALTY_FEE;
-    float totalPenalties = 0.0;
+    float totalPenalties = 0.0f;
 
+    
     printf("Enter Initial Stock: ");
-    scanf("%d", &initialStock);
+    if (scanf("%d", &initialStock) != 1) {
+        return 1;
+    }
 
     printf("Enter Penalty Fee: ");
-    scanf("%f", &PENALTY_FEE);
+    if (scanf("%f", &PENALTY_FEE) != 1) {
+        return 1;
+    }
 
     printf("Enter Number of Commands: ");
-    scanf("%d", &N);
+    if (scanf("%d", &N) != 1) {
+        return 1;
+    }
 
     currentStock = initialStock;
 
-    for(int i = 0; i < N; i++) {
+   
+    for (int i = 0; i < N; i++) {
 
         printf("Enter Command Code (1=Receive, 2=Ship, 3=Status): ");
-        scanf("%d", &cmdCode);
+        if (scanf("%d", &cmdCode) != 1) {
+            return 1;
+        }
 
+       
         printf("Enter Quantity: ");
-        scanf("%d", &quantity);
+        if (scanf("%d", &quantity) != 1) {
+            return 1;
+        }
 
-        switch(cmdCode) {
+        switch (cmdCode) {
 
-            case 1: 
+        case 1:
+            if (quantity <= 0) {
+                printf("Error: Quantity must be positive.\n");
+            } else {
                 currentStock += quantity;
                 printf("Received %d units.\n", quantity);
-                break;
+            }
+            break;
 
-            case 2:
-                if(quantity <= 0) {
-                    printf("Error: Quantity must be positive.\n");
-                    
-                }
-                else if(quantity <= currentStock) {
-                    currentStock -= quantity;
-                    printf("Shipped %d units.\n", quantity);
+        case 2: 
+            if (quantity <= 0) {
+                printf("Error: Quantity must be positive.\n");
+            } else if (quantity <= currentStock) {
+                currentStock -= quantity;
+                printf("Shipped %d units.\n", quantity);
+            } else {
+                totalPenalties += PENALTY_FEE;
+                printf("FAILURE: Insufficient stock. PENALTY %.2f added.\n",
+                       PENALTY_FEE);
+            }
+            break;
 
-                }
-                else {
-                    totalPenalties += PENALTY_FEE;
-                    printf("FAILURE: Insufficient stock. PENALTY %.2f added.\n", PENALTY_FEE);
+        case 3: 
+            printf("Current Stock: %d\n", currentStock);
+            printf("Total Penalties: %.2f\n", totalPenalties);
+            break;
 
-                }
-                break;
-
-            case 3:
-                printf("Current Stock: %d\n", currentStock);
-                printf("Total Penalties: %.2f\n", totalPenalties);
-                break;
-
-            default:
-                printf("Error: Invalid Command.\n");
+        default:
+            printf("Error: Invalid Command.\n");
+            break;
         }
     }
 
