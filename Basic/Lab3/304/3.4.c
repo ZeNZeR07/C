@@ -34,9 +34,9 @@ int main() {
         }
     }
 
-    printf("Passed: %d\n", passedCount);
-    printf("Failed: %d\n", failedCount);
-    
+    printf("Passed Count: %d\n", passedCount);
+    printf("Failed Count: %d\n", failedCount);
+
     return 0;
 
 
