@@ -35,14 +35,17 @@ int main() {
             case 2:
                 if(quantity <= 0) {
                     printf("Error: Quantity must be positive.\n");
+                    
                 }
                 else if(quantity <= currentStock) {
                     currentStock -= quantity;
                     printf("Shipped %d units.\n", quantity);
+
                 }
                 else {
                     totalPenalties += PENALTY_FEE;
                     printf("FAILURE: Insufficient stock. PENALTY %.2f added.\n", PENALTY_FEE);
+
                 }
                 break;
 
