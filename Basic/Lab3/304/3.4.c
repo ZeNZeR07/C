@@ -29,6 +29,7 @@ int main() {
 
         if (itemTotal >= 500.0f) {
             itemTotal *= 0.90f;
+
         }
 
         grandTotal += itemTotal;
@@ -37,4 +38,6 @@ int main() {
     printf("Grand Total: %.2f\n", grandTotal);
 
     return 0;
+
+    
 }
