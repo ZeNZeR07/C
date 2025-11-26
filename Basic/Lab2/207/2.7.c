@@ -32,9 +32,9 @@ int main() {
 
     }
 
-    printf("Count FizzBuzz: %d\n", countFizzBuzz);
-    printf("Count Fizz: %d\n", countFizz);
-    printf("Count Buzz: %d\n", countBuzz);
+    printf("Count FizzBuzz (by 15): %d\n", countFizzBuzz);
+    printf("Count Fizz (by 3 only): %d\n", countFizz);
+    printf("Count Buzz (by 5 only): %d\n", countBuzz);
     printf("Count Other: %d\n", countOther);
 
     return 0;
