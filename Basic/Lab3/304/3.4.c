@@ -1,43 +1,43 @@
 #include <stdio.h>
 
-#define SHIPPING_FEE 50.0f
-
-struct Order {
-    int itemId;
-    float unitPrice;
-    int quantity;
+struct Student{
+    char name[50];
+    int studentId;
+    float score;
 };
 
 int main() {
     int N, i;
-    float grandTotal = 0.0f;
+    int passedCount = 0;
+    int failedCount = 0;
 
-    if (scanf("%d", &N) != 1) {
+    if(scanf("%d", &N) != 1 || N <= 0){
         return 1;
     }
+ 
+    struct Student students[N];
+    
+    for(i = 0; i < N; i++){
 
-    struct Order orders[N];
-
-    for (i = 0; i < N; i++) {
-        float itemTotal;
-
-        if (scanf("%d %f %d",&orders[i].itemId, &orders[i].unitPrice, &orders[i].quantity) != 3) {
+        if(scanf("%d %f %s", &students[i].studentId, &students[i].score, students[i].name) != 3){
             return 1;
         }
 
-        itemTotal = (orders[i].unitPrice * orders[i].quantity) + SHIPPING_FEE;
 
-        if (itemTotal >= 500.0f) {
-            itemTotal *= 0.90f;
-
-        }
-
-        grandTotal += itemTotal;
     }
 
-    printf("Grand Total: %.2f\n", grandTotal);
+    for(i = 0; i < N; i++){
+        if(students[i].score >= 60.0){
+            passedCount++;
+        } else {
+            failedCount++;
+        }
+    }
+
+    printf("Passed Count: %d\n", passedCount);
+    printf("Failed Count: %d\n", failedCount);
 
     return 0;
 
-    
+
 }
