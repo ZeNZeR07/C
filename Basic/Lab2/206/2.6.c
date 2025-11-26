@@ -1,13 +1,12 @@
 #include <stdio.h>
 
 int main() {
+
     int N_MONTHS, month, successCount = 0;
     float dailyDeposit, monthlyTotal;
 
     printf("Enter Number of Months: ");
-    if (scanf("%d", &N_MONTHS) != 1) {
-        return 1;   
-    }
+    scanf("%d", &N_MONTHS);
 
     for (month = 1; month <= N_MONTHS; month++) {
 
@@ -38,4 +37,5 @@ int main() {
 
     return 0;
     
+
 }
