@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#define SHIPPING_FEE 50.0f
-
 struct Order {
     int itemId;
     float unitPrice;
@@ -9,6 +7,8 @@ struct Order {
 };
 
 int main() {
+    const float SHIPPING_FEE = 50.0f;
+
     int N, i;
     float grandTotal = 0.0f;
 
@@ -21,7 +21,10 @@ int main() {
     for (i = 0; i < N; i++) {
         float itemTotal;
 
-        if (scanf("%d %f %d",&orders[i].itemId, &orders[i].unitPrice, &orders[i].quantity) != 3) {
+        if (scanf("%d %f %d",
+                  &orders[i].itemId,
+                  &orders[i].unitPrice,
+                  &orders[i].quantity) != 3) {
             return 1;
         }
 
@@ -29,7 +32,6 @@ int main() {
 
         if (itemTotal >= 500.0f) {
             itemTotal *= 0.90f;
-
         }
 
         grandTotal += itemTotal;
@@ -38,6 +40,4 @@ int main() {
     printf("Grand Total: %.2f\n", grandTotal);
 
     return 0;
-
-    
 }
