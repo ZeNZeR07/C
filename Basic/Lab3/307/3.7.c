@@ -1,45 +1,53 @@
 #include <stdio.h>
 
-struct SalesRecord {
+struct Campaign {
     char name[50];
-    float target;
-    float actual;
+    float productPrice;
+    int salesCount;
+    float adSpend;
 };
 
 int main(void) {
     int N, i;
-    float grandTotalCommission = 0.0f;
 
     if (scanf("%d", &N) != 1 || N <= 0) {
         return 1;
     }
 
-    struct SalesRecord records[N];
+    struct Campaign campaigns[N];
 
     for (i = 0; i < N; i++) {
-        float baseCommission;
+        float commissionRate = 0.0f;
+        float totalRevenue;
+        float totalCommission;
+        float netProfitLoss;
 
-    
-        if (scanf("%f %f %s", &records[i].target, &records[i].actual, records[i].name) != 3) {
+     
+        if (scanf("%s %f %d %f", campaigns[i].name, &campaigns[i].productPrice, &campaigns[i].salesCount, &campaigns[i].adSpend) != 4) {
             return 1;
         }
 
-        baseCommission = records[i].actual * 0.10;
+        totalRevenue = campaigns[i].salesCount * campaigns[i].productPrice;
 
-        if (records[i].actual >= records[i].target * 1.20) {
-            baseCommission += 200.0;
-        } 
-        else if (records[i].actual >= records[i].target) {
-            baseCommission += 50.0;
-        } 
-        else if (records[i].actual < records[i].target * 0.90) {
-            baseCommission -= 100.0;
+        if (campaigns[i].salesCount >= 20) {
+            commissionRate = 0.20f;
+        } else if (campaigns[i].salesCount >= 10) {
+            commissionRate = 0.15f;
+        } else {
+            commissionRate = 0.10f;
         }
 
-        grandTotalCommission += baseCommission;
+        totalCommission = totalRevenue * commissionRate;
+        netProfitLoss = totalCommission - campaigns[i].adSpend;
+
+        printf("--- Campaign: %s ---\n", campaigns[i].name);
+        printf("Sales: %d, Ad Spend: %.2f\n", campaigns[i].salesCount, campaigns[i].adSpend);
+        printf("Rate Used: %d%%\n", (int)(commissionRate * 100));
+        printf("Calculation: (%.2f * %d%%) - %.2f = %.2f\n", totalRevenue, (int)(commissionRate * 100), campaigns[i].adSpend, netProfitLoss);
+        printf("Net Result: %.2f\n", netProfitLoss);
     }
 
-    printf("Grand Total Commission: %.2f\n", grandTotalCommission);
-
     return 0;
+
+    
 }
