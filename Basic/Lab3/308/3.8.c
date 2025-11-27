@@ -22,8 +22,11 @@ int main(void) {
         float totalCommission;
         float netProfitLoss;
 
-     
-        if (scanf("%s %f %d %f", campaigns[i].name, &campaigns[i].productPrice, &campaigns[i].salesCount, &campaigns[i].adSpend) != 4) {
+        if (scanf("%s %f %d %f",
+                  campaigns[i].name,
+                  &campaigns[i].productPrice,
+                  &campaigns[i].salesCount,
+                  &campaigns[i].adSpend) != 4) {
             return 1;
         }
 
@@ -41,13 +44,17 @@ int main(void) {
         netProfitLoss = totalCommission - campaigns[i].adSpend;
 
         printf("--- Campaign: %s ---\n", campaigns[i].name);
-        printf("Sales: %d, Ad Spend: %.2f\n", campaigns[i].salesCount, campaigns[i].adSpend);
+        printf("Sales: %d, Ad Spend: %.2f\n",
+               campaigns[i].salesCount,
+               campaigns[i].adSpend);
         printf("Rate Used: %d%%\n", (int)(commissionRate * 100));
-        printf("Calculation: (%.2f * %d%%) - %.2f = %.2f\n", totalRevenue, (int)(commissionRate * 100), campaigns[i].adSpend, netProfitLoss);
+        printf("Calculation: (%.2f * %d%%) - %.2f = %.2f\n",
+               totalRevenue,
+               (int)(commissionRate * 100),
+               campaigns[i].adSpend,
+               netProfitLoss);
         printf("Net Result: %.2f\n", netProfitLoss);
     }
 
     return 0;
-
-    
 }
