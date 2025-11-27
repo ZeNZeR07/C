@@ -7,18 +7,18 @@ struct SalesRecord {
 };
 
 int main(void) {
-    int   N = 0;
+    int   numRecords = 0;
     int   i;
     float grandTotalCommission = 0.0f;
 
-    if (scanf("%d", &N) != 1 || N <= 0) {
+    if (scanf("%d", &numRecords) != 1 || numRecords <= 0) {
         printf("Invalid number of records.\n");
         return 1;
     }
 
-    struct SalesRecord records[N];
+    struct SalesRecord records[numRecords];
 
-    for (i = 0; i < N; i++) {
+    for (i = 0; i < numRecords; i++) {
         float baseCommission = 0.0f;
 
         if (scanf("%f %f %49s",
@@ -29,8 +29,11 @@ int main(void) {
             return 1;
         }
 
-        if (records[i].target <= 0.0f || records[i].actual < 0.0f) {
-            printf("Invalid target/actual for %s. Skipping.\n", records[i].name);
+        if (records[i].target <= 0.0f ||
+            records[i].actual < 0.0f   ||
+            records[i].name[0] == '\0') {
+            printf("Invalid target/actual/name for %s. Skipping.\n",
+                   records[i].name);
             continue;
         }
 
