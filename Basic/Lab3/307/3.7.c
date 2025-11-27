@@ -11,7 +11,6 @@ int main(void) {
     int   i;
     float grandTotalCommission = 0.0f;
 
-
     if (scanf("%d", &N) != 1 || N <= 0) {
         printf("Invalid number of records.\n");
         return 1;
@@ -22,7 +21,6 @@ int main(void) {
     for (i = 0; i < N; i++) {
         float baseCommission = 0.0f;
 
-
         if (scanf("%f %f %49s",
                   &records[i].target,
                   &records[i].actual,
@@ -31,23 +29,20 @@ int main(void) {
             return 1;
         }
 
-
         if (records[i].target <= 0.0f || records[i].actual < 0.0f) {
             printf("Invalid target/actual for %s. Skipping.\n", records[i].name);
             continue;
         }
 
-    
         baseCommission = records[i].actual * 0.10f;
 
-       
-        if (records[i].actual > records[i].target * 1.20f) {     
+        if (records[i].actual > records[i].target * 1.20f) {
             baseCommission += 200.0f;
-        } else if (records[i].actual >= records[i].target) {     
+        } else if (records[i].actual >= records[i].target) {
             baseCommission += 50.0f;
-        } else if (records[i].actual < records[i].target * 0.90f) { 
+        } else if (records[i].actual < records[i].target * 0.90f) {
             baseCommission -= 100.0f;
-        }  
+        }
 
         grandTotalCommission += baseCommission;
     }
