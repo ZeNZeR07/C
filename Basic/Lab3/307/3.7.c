@@ -6,11 +6,11 @@ struct SalesRecord {
     float actual;
 };
 
-int main() {
+int main(void) {
     int N, i;
-    float grandTotalCommission = 0.0;
+    float grandTotalCommission = 0.0f;
 
-    if (scanf("%d", &N) != 1) {
+    if (scanf("%d", &N) != 1 || N <= 0) {
         return 1;
     }
 
@@ -19,7 +19,8 @@ int main() {
     for (i = 0; i < N; i++) {
         float baseCommission;
 
-        if (scanf("%s %f %f", records[i].name, &records[i].target, &records[i].actual) != 3) {
+    
+        if (scanf("%f %f %s", &records[i].target, &records[i].actual, records[i].name) != 3) {
             return 1;
         }
 
@@ -27,10 +28,10 @@ int main() {
 
         if (records[i].actual >= records[i].target * 1.20) {
             baseCommission += 200.0;
-        }
+        } 
         else if (records[i].actual >= records[i].target) {
             baseCommission += 50.0;
-        }
+        } 
         else if (records[i].actual < records[i].target * 0.90) {
             baseCommission -= 100.0;
         }
