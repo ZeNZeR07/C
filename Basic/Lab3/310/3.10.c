@@ -1,20 +1,21 @@
 #include <stdio.h>
 
-#define VAT_RATE 0.07
+#define VAT_RATE 0.07f
 
 struct Item {
-    char name[50];
+    char  name[50];
     float unitPrice;
-    int quantity;
+    int   quantity;
 };
 
 int main(void) {
-    int N, i;
-    float subTotal = 0.0;
-    float totalVAT = 0.0;
-    float grandTotal = 0.0;
+    int   N, i;
+    float subTotal   = 0.0f;
+    float totalVAT   = 0.0f;
+    float grandTotal = 0.0f;
 
-    if (scanf("%d", &N) != 1) {
+ 
+    if (scanf("%d", &N) != 1 || N <= 0) {
         return 1;
     }
 
@@ -25,10 +26,15 @@ int main(void) {
     for (i = 0; i < N; i++) {
         float itemCost;
 
-        if (scanf("%s %f %d",
+        if (scanf("%49s %f %d",
                   items[i].name,
                   &items[i].unitPrice,
                   &items[i].quantity) != 3) {
+            return 1;
+        }
+
+        
+        if (items[i].unitPrice < 0.0f || items[i].quantity < 0) {
             return 1;
         }
 
@@ -42,7 +48,7 @@ int main(void) {
         subTotal += itemCost;
     }
 
-    totalVAT = subTotal * VAT_RATE;
+    totalVAT   = subTotal * VAT_RATE;
     grandTotal = subTotal + totalVAT;
 
     printf("--------------\n");
