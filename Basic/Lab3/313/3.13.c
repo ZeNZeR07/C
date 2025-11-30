@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>  
 
 int main() {
     char text[101];
@@ -8,25 +9,26 @@ int main() {
     int countOther = 0;
     int i;
 
-    if (scanf("%s", text) != 1) {
+
+    if (fgets(text, sizeof(text), stdin) == NULL) {
         return 1;
     }
 
-    for (i = 0; text[i] != '\0'; i++) {
 
-        if (text[i] >= 'A' && text[i] <= 'Z') {
+    for (i = 0; text[i] != '\0' && text[i] != '\n'; i++) {
+
+        if (isupper((unsigned char)text[i])) {
             countUpper++;
         }
-        else if (text[i] >= 'a' && text[i] <= 'z') {
+        else if (islower((unsigned char)text[i])) {
             countLower++;
         }
-        else if (text[i] >= '0' && text[i] <= '9') {
+        else if (isdigit((unsigned char)text[i])) {
             countDigit++;
         }
         else {
             countOther++;
         }
-
     }
 
     printf("Uppercase: %d\n", countUpper);
