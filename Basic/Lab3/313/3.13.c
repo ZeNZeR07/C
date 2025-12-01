@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <ctype.h>  
+#include <ctype.h>
 
 int main() {
     char text[101];
@@ -9,14 +9,11 @@ int main() {
     int countOther = 0;
     int i;
 
-
     if (fgets(text, sizeof(text), stdin) == NULL) {
         return 1;
     }
 
-
     for (i = 0; text[i] != '\0' && text[i] != '\n'; i++) {
-
         if (isupper((unsigned char)text[i])) {
             countUpper++;
         }
