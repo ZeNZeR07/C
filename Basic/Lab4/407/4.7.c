@@ -9,7 +9,6 @@ int main() {
     int count = 0;
     int i;
 
-   
     printf("Enter the number of elements (N, max %d): ", MAX_SIZE);
     scanf("%d", &N);
 
@@ -17,24 +16,20 @@ int main() {
         N = MAX_SIZE;
     }
 
-
     printf("Enter %d integer numbers:\n", N);
     for (i = 0; i < N; i++) {
         printf("Element %d: ", i + 1);
         scanf("%d", &data[i]);
     }
 
-
     printf("Enter the search value: ");
     scanf("%d", &search_value);
-
 
     for (i = 0; i < N; i++) {
         if (data[i] == search_value) {
             count++;
         }
     }
-
 
     printf("\n--- FREQUENCY ANALYSIS REPORT ---\n");
     printf("Total elements recorded (N): %d\n", N);
