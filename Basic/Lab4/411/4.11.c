@@ -16,7 +16,7 @@ int main(void) {
     }
 
     printf("\n--- 2D MATRIX SUMMATION REPORT ---\n");
-    printf("Recorded Matrix (%d Rows x %d Columns):\n", ROWS, COLS);
+    printf("Recorded Matrix (%dx%d): \n", ROWS, COLS);
   
 
     for (i = 0; i < ROWS; i++) {
