@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 int main() {
-    int N, i;
+    int N;
+    int i;
 
     if (scanf("%d", &N) != 1) {
         return 1;
@@ -15,11 +16,9 @@ int main() {
         }
     }
 
-
-    for(i = N - 1; i >= 0; i--){
+    for (i = N - 1; i >= 0; i--) {
         printf("%d\n", scores[i]);
     }
-    
 
     return 0;
 }
