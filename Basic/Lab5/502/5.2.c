@@ -8,7 +8,23 @@ struct Employee {
 };
 
 
+int calculate_net_salary(int total_income) {
+    int tax;
 
+    if (total_income > 30000) {
+
+        tax = total_income * 10 / 100;
+
+    } else {
+
+        tax = total_income * 5 / 100;
+
+    }
+
+    return total_income - tax;
+
+
+}
 
 
 int main(void) {
@@ -55,20 +71,3 @@ int main(void) {
 
 }
 
-int calculate_net_salary(int total_income) {
-    int tax;
-
-    if (total_income > 30000) {
-
-        tax = total_income * 10 / 100;
-
-    } else {
-
-        tax = total_income * 5 / 100;
-
-    }
-
-    return total_income - tax;
-
-
-}
