@@ -6,19 +6,15 @@ struct Student {
     int id;
 };
 
-
 const char* check_id_existence(struct Student students[], int size, int search_id) {
     int i;
 
     for (i = 0; i < size; i++) {
 
-
         if (students[i].id == search_id) {
             return "ID FOUND in the system.";
         }
     }
-
-
     return "ID NOT FOUND in the system.";
 }
 
