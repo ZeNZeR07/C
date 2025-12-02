@@ -3,7 +3,6 @@
 #define SIZE 5
 
 int calculate_sum(int arr[], int size) {
-
     int i;
     int sum = 0;
 
@@ -12,29 +11,24 @@ int calculate_sum(int arr[], int size) {
     }
 
     return sum;
-
-
 }
 
 int main(void) {
-
     int numbers[SIZE];
     int total_sum;
     float average;
     int i;
 
-   
+    printf("Enter %d integer numbers:\n", SIZE);
 
     for (i = 0; i < SIZE; i++) {
-
-        printf("Enter %d integer numbers: ", SIZE);
+        printf("Element %d: ", i + 1);
 
         if (scanf("%d", &numbers[i]) != 1) {
             return 1;
-
         }
-
     }
+
 
     total_sum = calculate_sum(numbers, SIZE);
     average = (float)total_sum / SIZE;
@@ -43,10 +37,7 @@ int main(void) {
     printf("Recorded Numbers: ");
 
     for (i = 0; i < SIZE; i++) {
-
         printf("%d ", numbers[i]);
-
-        
     }
 
     printf("\n");
