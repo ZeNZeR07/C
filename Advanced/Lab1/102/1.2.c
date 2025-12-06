@@ -1,35 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-void GetSet(int **data, int *num) {
+void GetSet(int **setDataPtr, int *memberCountPtr) {
+    int scanStatus;
+    int index;
 
     printf("Enter number of members: ");
-    scanf("%d", num);
+    scanStatus = scanf("%d", memberCountPtr);
 
+    if (scanStatus != 1 || *memberCountPtr <= 0) {
+        *memberCountPtr = 0;
+        *setDataPtr = NULL;
+        return;
+    }
 
-    *data = (int *)malloc(*num * sizeof(int));
+    *setDataPtr = (int *)malloc(*memberCountPtr * sizeof(int));
+    if (*setDataPtr == NULL) {
+        *memberCountPtr = 0;
+        return;
+    }
 
-
-    for (int i = 0; i < *num; i++) {
-        printf("Enter data[%d] : ", i);
-        scanf("%d", &((*data)[i]));
+    for (index = 0; index < *memberCountPtr; index++) {
+        printf("Enter data[%d] : ", index);
+        scanStatus = scanf("%d", &((*setDataPtr)[index]));
+        if (scanStatus != 1) {
+            *memberCountPtr = index;
+            break;
+        }
     }
 }
 
-int main() {
-    int *data, num;
+int main(void) {
+    int *setData = NULL;
+    int memberCount = 0;
+    int index;
 
-    GetSet(&data, &num);
+    GetSet(&setData, &memberCount);
 
-
-    printf("\n--- Result ---\n");
-    for (int i = 0; i < num; i++) {
-        printf("data[%d] = %d\n", i, data[i]);
+    if (setData == NULL || memberCount <= 0) {
+        printf("No valid data. Program will exit.\n");
+        return 1;
     }
 
+    printf("\n--- Result ---\n");
+    for (index = 0; index < memberCount; index++) {
+        printf("data[%d] = %d\n", index, setData[index]);
+    }
 
-    free(data);
+    free(setData);
+    setData = NULL;
 
-    return 0;5
+    return 0;
 }
