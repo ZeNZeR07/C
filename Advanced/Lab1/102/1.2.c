@@ -20,20 +20,27 @@ void GetSet(int **setDataPtr, int *memberCountPtr) {
         return;
     }
 
-    for (index = 0; index < *memberCountPtr; index++) {
+    index = 0;
+    while (index < *memberCountPtr) {
         printf("Enter data[%d] : ", index);
         scanStatus = scanf("%d", &((*setDataPtr)[index]));
+
         if (scanStatus != 1) {
             *memberCountPtr = index;
             break;
         }
+
+        index = index + 1;
     }
 }
 
 int main(void) {
-    int *setData = NULL;
-    int memberCount = 0;
+    int *setData;
+    int memberCount;
     int index;
+
+    setData = NULL;
+    memberCount = 0;
 
     GetSet(&setData, &memberCount);
 
@@ -43,8 +50,11 @@ int main(void) {
     }
 
     printf("\n--- Result ---\n");
-    for (index = 0; index < memberCount; index++) {
+
+    index = 0;
+    while (index < memberCount) {
         printf("data[%d] = %d\n", index, setData[index]);
+        index = index + 1;
     }
 
     free(setData);
