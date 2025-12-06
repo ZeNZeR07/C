@@ -8,6 +8,7 @@ void GetMatrix(int **value, int *row, int *col) {
 
     printf("Enter rows and cols: ");
     scanStatus = scanf("%d %d", &r, &c);
+
     if (scanStatus != 2 || r <= 0 || c <= 0) {
         *value = NULL;
         *row = 0;
@@ -23,7 +24,7 @@ void GetMatrix(int **value, int *row, int *col) {
     }
 
     for (i = 0; i < r * c; i++) {
-        printf("Enter value[%d] : ", i);
+        printf("value[%d] = ", i);
         scanf("%d", &((*value)[i]));
     }
 
@@ -34,7 +35,7 @@ void GetMatrix(int **value, int *row, int *col) {
 int main() {
     int *data;
     int m, n;
-    int i;
+    int i, j;
 
     GetMatrix(&data, &m, &n);
 
@@ -43,9 +44,12 @@ int main() {
         return 1;
     }
 
-    printf("\n--- Matrix Values (1D form) ---\n");
-    for (i = 0; i < m * n; i++) {
-        printf("value[%d] = %d\n", i, data[i]);
+    printf("\n--- Matrix ---\n");
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            printf("%d ", data[i * n + j]);
+        }
+        printf("\n");
     }
 
     free(data);
