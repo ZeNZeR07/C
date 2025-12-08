@@ -3,22 +3,7 @@
 
 #define MAX_SIZE 100
 
-int count_vowels_with_pointer(char *str){
-    int count = 0;
-
-    while (*str != '\0')
-    {
-        switch (*str)
-        {
-            case 'a' : case 'e' : case 'i' : case 'o' : case 'u' :
-            case 'A' : case 'E' : case 'I' : case 'O' : case 'U' :
-                count++;
-                break;
-        }
-        str++;
-    }
-    return count;
-}
+int count_vowels_with_pointer(char *str);
 
 int main(){
     char sentence[MAX_SIZE];
@@ -39,4 +24,21 @@ int main(){
     printf("Total Vowel Count: %d\n", vowel_count);
 
     return 0;
+}
+
+int count_vowels_with_pointer(char *str){
+    int count = 0;
+
+    while (*str != '\0')
+    {
+        switch (*str)
+        {
+            case 'a' : case 'e' : case 'i' : case 'o' : case 'u' :
+            case 'A' : case 'E' : case 'I' : case 'O' : case 'U' :
+                count++;
+                break;
+        }
+        str++;
+    }
+    return count;
 }
