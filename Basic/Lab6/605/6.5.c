@@ -26,6 +26,7 @@ int main(){
     return 0;
 }
 
+
 int count_vowels_with_pointer(char *str){
     int count = 0;
 
