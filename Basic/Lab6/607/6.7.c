@@ -2,12 +2,14 @@
 
 float calculate_win_odds(int outs);
 
+
+
 int main(void) {
     int card_outs;
     float win_probability;
 
    
-    card_outs = 6;
+    scanf("%d", &card_outs);
 
 
     win_probability = calculate_win_odds(card_outs);
@@ -17,16 +19,25 @@ int main(void) {
     printf("Win Probability (Odds x 4): %.2f%%\n", win_probability);
 
     printf("Assessment: ");
+
     if (win_probability >= 30.0f) {
+
         printf("HIGH Win Probability\n");
+
     } else {
+
         printf("LOW Win Probability\n");
+
     }
 
     return 0;
+
+
 }
 
 
 float calculate_win_odds(int outs) {
+
     return (float)outs * 4.0f;
+
 }
