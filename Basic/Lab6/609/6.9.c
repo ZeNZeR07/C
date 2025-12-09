@@ -5,10 +5,7 @@
 #define MONTHS 3
 
 int analyze_profitability(int *rev_ptr, int *exp_ptr, int size, int *status_ptr);
-
-
 void get_monthly_data(int array[], int size, const char *type);
-
 void print_monthly_data(int array[], int size, const char *type);
 
 int main() {
@@ -28,7 +25,12 @@ int main() {
     print_monthly_data(monthly_expense, MONTHS, "EXPENSE");
 
     printf("NET PROFIT: %d\n", net_profit);
-    printf("BUSINESS STATUS: %s\n", business_status == 1 ? "PROJECT IS PROFITABLE" : "PROJECT IS UNPROFITABLE");
+    
+    if (business_status == 1) {
+        printf("BUSINESS STATUS: PROJECT IS PROFITABLE\n");
+    } else {
+        printf("BUSINESS STATUS: PROJECT IS UNPROFITABLE\n");
+    }
 
     return 0;
 }
@@ -38,12 +40,12 @@ int analyze_profitability(int *rev_ptr, int *exp_ptr, int size, int *status_ptr)
     long total_expense = 0;
     int net_profit = 0;
     
-    for (int i = 0; i < size; i++) {
-        total_revenue += *(rev_ptr + i);
-        total_expense += *(exp_ptr + i);
+    for (int month_index = 0; month_index < size; month_index++) {
+        total_revenue += *(rev_ptr + month_index);
+        total_expense += *(exp_ptr + month_index);
     }
     
-    net_profit = total_revenue - total_expense;
+    net_profit = (int)(total_revenue - total_expense);
     
     if (net_profit > 0) {
         *status_ptr = 1;
@@ -56,16 +58,20 @@ int analyze_profitability(int *rev_ptr, int *exp_ptr, int size, int *status_ptr)
 
 void get_monthly_data(int array[], int size, const char *type) {
     printf("\nEnter %d months of %s values:\n", size, type);
-    for (int i = 0; i < size; i++) {
-        printf("Month %d %s: ", i + 1, type);
-        scanf("%d", &array[i]);
+    for (int month_index = 0; month_index < size; month_index++) {
+        printf("Month %d %s: ", month_index + 1, type);
+        if (scanf("%d", &array[month_index]) != 1) {
+            printf("Invalid input. Setting value to 0.\n");
+            array[month_index] = 0;
+            while(getchar() != '\n'); 
+        }
     }
 }
 
 void print_monthly_data(int array[], int size, const char *type) {
     long total = 0;
-    for (int i = 0; i < size; i++) {
-        total += array[i];
+    for (int month_index = 0; month_index < size; month_index++) {
+        total += array[month_index];
     }
     
     printf("TOTAL %s: %ld\n", type, total); 
