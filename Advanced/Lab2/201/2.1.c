@@ -6,12 +6,17 @@ void reverse(char str[], char str2[]);
 
 
 int main() {
-    char text[ 50 ] = "I Love You";
+    char text[ 50 ];
     char out [ 50 ];
+
+
+    if (fgets(text, sizeof(text), stdin) == NULL) {
+        return 1;
+    }
+
     reverse( text, out );
 
-    printf("Original String: %s\n", text);
-    printf("Reversed String: %s\n", out);
+    printf("%s", out);
     
 }
 
