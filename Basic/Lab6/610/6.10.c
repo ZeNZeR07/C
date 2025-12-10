@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+#define SCORE_A 80
+#define SCORE_B 70
+#define SCORE_C 60
+#define SCORE_D 50
+
 struct Student {
     int student_id;
     int score;
@@ -7,6 +12,8 @@ struct Student {
 };
 
 void calculate_grade(struct Student *s_ptr);
+void input_data(struct Student *s_ptr);
+void view_report(struct Student *s_ptr);
 
 void display_menu() {
     printf("\n--- STUDENT RECORD MENU ---\n");
@@ -22,29 +29,19 @@ int main() {
 
     while (choice != 3) {
         display_menu();
-        scanf("%d", &choice);
+        
+        if (scanf("%d", &choice) != 1) {
+            while(getchar() != '\n');
+            choice = 0;
+        }
 
         switch (choice) {
             case 1:
-                printf("Enter Student ID: ");
-                scanf("%d", &record.student_id);
-                printf("Enter Score (0-100): ");
-                scanf("%d", &record.score);
-
-                calculate_grade(&record);
-
-                printf("Data updated. Grade calculated.\n");
+                input_data(&record);
                 break;
 
             case 2:
-                if (record.student_id == 0) {
-                    printf("No student data has been entered yet (ID is 0).\n");
-                } else {
-                    printf("\n--- STUDENT REPORT ---\n");
-                    printf("ID: %d\n", record.student_id);
-                    printf("Score: %d\n", record.score);
-                    printf("Grade: %c\n", record.grade);
-                }
+                view_report(&record);
                 break;
 
             case 3:
@@ -61,15 +58,37 @@ int main() {
 }
 
 void calculate_grade(struct Student *s_ptr) {
-    if (s_ptr->score >= 80) {
+    if (s_ptr->score >= SCORE_A) {
         s_ptr->grade = 'A';
-    } else if (s_ptr->score >= 70 && s_ptr->score <= 79) {
+    } else if (s_ptr->score >= SCORE_B) {
         s_ptr->grade = 'B';
-    } else if (s_ptr->score >= 60 && s_ptr->score <= 69) {
+    } else if (s_ptr->score >= SCORE_C) {
         s_ptr->grade = 'C';
-    } else if (s_ptr->score >= 50 && s_ptr->score <= 59) {
+    } else if (s_ptr->score >= SCORE_D) {
         s_ptr->grade = 'D';
     } else {
         s_ptr->grade = 'F';
+    }
+}
+
+void input_data(struct Student *s_ptr) {
+    printf("Enter Student ID: ");
+    scanf("%d", &s_ptr->student_id);
+    printf("Enter Score (0-100): ");
+    scanf("%d", &s_ptr->score);
+
+    calculate_grade(s_ptr);
+
+    printf("Data updated. Grade calculated.\n");
+}
+
+void view_report(struct Student *s_ptr) {
+    if (s_ptr->student_id == 0) {
+        printf("No student data has been entered yet (ID is 0).\n");
+    } else {
+        printf("\n--- STUDENT REPORT ---\n");
+        printf("ID: %d\n", s_ptr->student_id);
+        printf("Score: %d\n", s_ptr->score);
+        printf("Grade: %c\n", s_ptr->grade);
     }
 }
