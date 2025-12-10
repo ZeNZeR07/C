@@ -9,6 +9,10 @@ int main() {
     char text[ 50 ] = "I Love You";
     char out [ 50 ];
     reverse( text, out );
+
+    printf("Original String: %s\n", text);
+    printf("Reversed String: %s\n", out);
+    
 }
 
 
