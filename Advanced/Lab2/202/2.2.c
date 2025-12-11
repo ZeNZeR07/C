@@ -1,44 +1,36 @@
 #include <stdio.h>
-
+#include <string.h>
 
 char *reverse(char str1[]);
 
-
-
 int main() {
-    char text[ 50 ] ;
-    char *out ;
+    char text[50];
+    char *out;
 
+    fgets(text, sizeof(text), stdin);  
 
-    if (fgets(text, sizeof(text), stdin) == NULL) {
-        return 1;
-    }
+    out = reverse(text);   
 
-    *out = reverse(text);
+    printf("%s\n", out); 
 
-    printf("%s", out);
-    
+    return 0;
 }
 
-
 char *reverse(char str1[]) {
-    int i = 0;
-    int j = 0;
-    int temp[ 50 ];
+    static char str2[100];  
+    int len = strlen(str1);
+    int i;
 
-  
-    while (str1[i] != '\0') {
-        i++;        
+
+    if (len > 0 && str1[len - 1] == '\n') {
+        str1[len - 1] = '\0';
+        len--;
     }
-    i--; 
 
-   
-    while (i >= 0) {
-        temp[j] = str1[i];
-        i--;
-        j++;
+    for (i = 0; i < len; i++) {
+        str2[i] = str1[len - 1 - i];
     }
-    return temp[j] = '\0';
 
-
+    str2[len] = '\0';  
+    return str2;
 }
