@@ -8,7 +8,7 @@ struct student {
 } ;
 
 
-void upgrade( struct student *child ) ;
+void upgrade( struct student child ) ;
 
 int main() {
     struct student aboy ;
@@ -16,16 +16,16 @@ int main() {
     aboy.gpa = 3.00 ;
     
 
-    upgrade( &aboy ) ; 
+    upgrade( aboy ) ; 
     
     printf( "%.2f", aboy.gpa ) ;
     return 0 ;
 }
 
-void upgrade( struct student *child ) {
-    if ( child->sex == 'M' ) {
-        child->gpa = child->gpa * 1.10 ; 
+void upgrade( struct student child ) {
+    if ( child.sex == 'M' ) {
+        child.gpa = child.gpa * 1.10 ; 
     } else {
-        child->gpa = child->gpa * 1.20 ; 
+        child.gpa = child.gpa * 1.20 ; 
     }
 }
