@@ -1,8 +1,5 @@
-#include <iostream>
-#include <cstring>
-#include <iomanip>
-
-using namespace std;
+#include <stdio.h>
+#include <string.h>
 
 struct studentNode {
     char name[20];
@@ -58,7 +55,8 @@ public:
 
     virtual void ShowNode() {
         if (*now != NULL) {
-            cout << (*now)->name << " " << (*now)->age << " " << (*now)->sex << " " << fixed << setprecision(2) << (*now)->gpa << endl;
+            // เปลี่ยนจาก cout เป็น printf
+            printf("%s %d %c %.2f\n", (*now)->name, (*now)->age, (*now)->sex, (*now)->gpa);
         }
     }
 };
@@ -72,13 +70,14 @@ public:
     virtual void ShowNode() {
         struct studentNode *temp = start;
         while (temp != NULL) {
-            cout << temp->name;
+            // เปลี่ยนจาก cout เป็น printf
+            printf("%s", temp->name);
             if (temp->next != NULL) {
-                cout << " ";
+                printf(" ");
             }
             temp = temp->next;
         }
-        cout << endl;
+        printf("\n");
     }
 };
 
