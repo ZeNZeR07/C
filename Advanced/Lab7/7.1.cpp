@@ -21,30 +21,30 @@ public:
     }
 
     ~LinkedList() {
-        struct studentNode *temp;
-        while (start != NULL) {
-            temp = start;
-            start = start->next;
-            delete temp;
+        struct studentNode *p = start;
+        while (p != NULL) {
+            struct studentNode *nxt = p->next;
+            delete p;
+            p = nxt;
         }
     }
 
     void InsNode(char n[], int a, char s, float g) {
-        struct studentNode *newNode = new studentNode;
-        strcpy(newNode->name, n);
-        newNode->age = a;
-        newNode->sex = s;
-        newNode->gpa = g;
-        newNode->next = start;
-        start = newNode;
+        struct studentNode *nn = new studentNode;
+        strcpy(nn->name, n);
+        nn->age = a;
+        nn->sex = s;
+        nn->gpa = g;
+        nn->next = start;
+        start = nn;
         now = &start;
     }
 
     void DelNode() {
         if (start == NULL || *now == NULL) return;
-        struct studentNode *temp = *now;
-        *now = temp->next;
-        delete temp;
+        struct studentNode *p = *now;
+        *now = p->next;
+        delete p;
     }
 
     void GoNext() {
@@ -55,7 +55,6 @@ public:
 
     virtual void ShowNode() {
         if (*now != NULL) {
-            // เปลี่ยนจาก cout เป็น printf
             printf("%s %d %c %.2f\n", (*now)->name, (*now)->age, (*now)->sex, (*now)->gpa);
         }
     }
@@ -68,14 +67,13 @@ public:
     }
 
     virtual void ShowNode() {
-        struct studentNode *temp = start;
-        while (temp != NULL) {
-            // เปลี่ยนจาก cout เป็น printf
-            printf("%s", temp->name);
-            if (temp->next != NULL) {
+        struct studentNode *p = start;
+        while (p != NULL) {
+            printf("%s", p->name);
+            if (p->next != NULL) {
                 printf(" ");
             }
-            temp = temp->next;
+            p = p->next;
         }
         printf("\n");
     }
