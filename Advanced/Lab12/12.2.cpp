@@ -1,53 +1,49 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int findMax( int firstValue, int secondValue ) ;
-void KnapsackDP( int itemWeights[], int itemValues[], int itemCount, int capacity ) ;
+int *KnapsackGreedy(int *w, int *v, int n, int wx);
 
 int main() {
-    int itemValues[] = { 1, 6, 18, 22, 28 } ;
-    int itemWeights[] = { 1, 2, 5, 6, 7 } ;
-    int capacity = 11 ;
-    int itemCount = 5 ;
+    int n = 5, wx = 11;
+    int w[5] = { 1, 2, 5, 6, 7 };
+    int v[5] = { 1, 6, 18, 22, 28 };
 
-    KnapsackDP( itemWeights, itemValues, itemCount, capacity ) ;
+    int *x = KnapsackGreedy(w, v, n, wx);
 
-    return 0 ;
+    for (int i = 0; i < n; i++)
+        printf("%d ", x[i]);
+
+    return 0;
 }
 
-int findMax( int firstValue, int secondValue ) {
-    if ( firstValue > secondValue ) {
-        return firstValue ;
-    }
-    return secondValue ;
-}
+int *KnapsackGreedy(int *w, int *v, int n, int wx)
+{
+    int *x = new int[n];
+    int usedW = 0;
 
-void KnapsackDP( int itemWeights[], int itemValues[], int itemCount, int capacity ) {
-    int i, w ;
-    int **dpTable = ( int ** )malloc( ( itemCount + 1 ) * sizeof( int * ) ) ;
-    
-    for ( i = 0 ; i <= itemCount ; i++ ) {
-        dpTable[i] = ( int * )malloc( ( capacity + 1 ) * sizeof( int ) ) ;
-    }
+    for (int i = 0; i < n; i++)
+        x[i] = 0;
 
-    for ( i = 0 ; i <= itemCount ; i++ ) {
-        for ( w = 0 ; w <= capacity ; w++ ) {
-            if ( i == 0 || w == 0 ) {
-                dpTable[i][w] = 0 ;
-            }
-            else if ( itemWeights[i - 1] <= w ) {
-                dpTable[i][w] = findMax( itemValues[i - 1] + dpTable[i - 1][w - itemWeights[i - 1]], dpTable[i - 1][w] ) ;
-            }
-            else {
-                dpTable[i][w] = dpTable[i - 1][w] ;
+    int idx[n];
+    for (int i = 0; i < n; i++)
+        idx[i] = i;
+
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (v[idx[j]] < v[idx[j + 1]]) {
+                int temp = idx[j];
+                idx[j] = idx[j + 1];
+                idx[j + 1] = temp;
             }
         }
     }
 
-    printf( "%d", dpTable[itemCount][capacity] ) ;
-
-    for ( i = 0 ; i <= itemCount ; i++ ) {
-        free( dpTable[i] ) ;
+    for (int k = 0; k < n; k++) {
+        int i = idx[k];
+        if (usedW + w[i] <= wx) {
+            x[i] = 1;
+            usedW += w[i];
+        }
     }
-    free( dpTable ) ;
+
+    return x;
 }
