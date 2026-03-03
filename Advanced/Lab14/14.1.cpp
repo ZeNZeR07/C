@@ -15,11 +15,9 @@ static int bt(int *w, int *v, int n, int wx, int i,
         return curV;
     }
 
-    // ทางเลือก 1: ไม่เอาชิ้น i
     curX[i] = 0;
     int bestV = bt(w, v, n, wx, i + 1, curW, curV, curX, bestX);
 
-    // ทางเลือก 2: เอาชิ้น i (ถ้ายังไม่เกิน wx)
     if (curW + w[i] <= wx) {
         int tmpBestX[n];
         copyArr(tmpBestX, bestX, n);
