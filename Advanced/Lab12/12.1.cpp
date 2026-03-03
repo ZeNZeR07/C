@@ -1,53 +1,66 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int findMax( int value1, int value2 ) ;
-void KnapsackDP( int weights[], int values[], int itemCount, int capacity ) ;
+int *Dijkstra(int *L, int n);
 
 int main() {
-    int values[] = { 1, 6, 18, 22, 28 } ;
-    int weights[] = { 1, 2, 5, 6, 7 } ;
-    int capacity = 11 ;
-    int itemCount = 5 ;
+    int n = 5, i = 0, j = 0, *d, *g;
 
-    KnapsackDP( weights, values, itemCount, capacity ) ;
+    g = new int[n * n];
 
-    return 0 ;
+    for (i = 0; i < n; i++)
+        for (j = 0; j < n; j++)
+            g[i * n + j] = -1;
+
+    g[0 * n + 1] = 100;  g[0 * n + 2] = 80;
+    g[0 * n + 3] = 30;   g[0 * n + 4] = 10;
+    g[1 * n + 2] = 20;   g[3 * n + 1] = 20;
+
+
+    g[4 * n + 3] = 10;
+
+    d = Dijkstra(g, n);
+
+    for (i = 0; i < n - 1; i++)
+        printf("%d ", d[i]);
+
+    return 0;
 }
 
-int findMax( int value1, int value2 ) {
-    if ( value1 > value2 ) {
-        return value1 ;
-    }
-    return value2 ;
-}
+int *Dijkstra(int *L, int n)
+{
+    int INF = 1000000000;
+    int dist[n];
+    int visited[n];
 
-void KnapsackDP( int weights[], int values[], int itemCount, int capacity ) {
-    int i, w ;
-    int **table = ( int ** )malloc( ( itemCount + 1 ) * sizeof( int * ) ) ;
-    
-    for ( i = 0 ; i <= itemCount ; i++ ) {
-        table[i] = ( int * )malloc( ( capacity + 1 ) * sizeof( int ) ) ;
+    for (int i = 0; i < n; i++) {
+        dist[i] = INF;
+        visited[i] = 0;
     }
+    dist[0] = 0;
 
-    for ( i = 0 ; i <= itemCount ; i++ ) {
-        for ( w = 0 ; w <= capacity ; w++ ) {
-            if ( i == 0 || w == 0 ) {
-                table[i][w] = 0 ;
+    for (int step = 0; step < n; step++) {
+        int u = -1, best = INF;
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i] && dist[i] < best) {
+                best = dist[i];
+                u = i;
             }
-            else if ( weights[i - 1] <= w ) {
-                table[i][w] = findMax( values[i - 1] + table[i - 1][w - weights[i - 1]], table[i - 1][w] ) ;
-            }
-            else {
-                table[i][w] = table[i - 1][w] ;
+        }
+
+        if (u == -1) break;
+        visited[u] = 1;
+
+        for (int v = 0; v < n; v++) {
+            int w = L[u * n + v];
+            if (w != -1 && !visited[v]) {
+                int nd = dist[u] + w;
+                if (nd < dist[v]) dist[v] = nd;
             }
         }
     }
 
-    printf( "%d", table[itemCount][capacity] ) ;
-
-    for ( i = 0 ; i <= itemCount ; i++ ) {
-        free( table[i] ) ;
-    }
-    free( table ) ;
+    int *ans = new int[n - 1];
+    for (int i = 1; i < n; i++) ans[i - 1] = dist[i];
+    return ans;
 }
