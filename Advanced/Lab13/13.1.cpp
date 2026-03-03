@@ -1,50 +1,69 @@
 #include <stdio.h>
 
-int *KnapsackDP(int *w, int *v, int n, int wx);
+static int maxInt(int a, int b)
+{
+    return (a > b) ? a : b;
+}
 
-int main() {
-    int n = 5, wx = 11;
-    int w[5] = { 1, 2, 5, 6, 7 };
-    int v[5] = { 1, 6, 18, 22, 28 };
-    int *x;
+static void buildDPTable(int dp[][12], int *weights, int *values, int itemCount, int capacity)
+{
+    for (int i = 0; i <= itemCount; i++) {
+        for (int c = 0; c <= capacity; c++) {
+            if (i == 0 || c == 0) {
+                dp[i][c] = 0;
+                continue;
+            }
 
-    x = KnapsackDP(w, v, n, wx);
-    for (int i = 0; i < n; i++) printf("%d ", x[i]);
+            int notTake = dp[i - 1][c];
+            int take = -1;
 
-    return 0;
+            if (weights[i - 1] <= c) {
+                take = values[i - 1] + dp[i - 1][c - weights[i - 1]];
+            }
+
+            dp[i][c] = maxInt(notTake, take);
+        }
+    }
+}
+
+static void reconstructChoice(int *x, int dp[][12], int *weights, int itemCount, int capacity)
+{
+    for (int i = 0; i < itemCount; i++) {
+        x[i] = 0;
+    }
+
+    int c = capacity;
+    for (int i = itemCount; i >= 1; i--) {
+        if (dp[i][c] != dp[i - 1][c]) {
+            x[i - 1] = 1;
+            c -= weights[i - 1];
+        }
+    }
 }
 
 int *KnapsackDP(int *w, int *v, int n, int wx)
 {
-    int dp[n + 1][wx + 1];
+    int dp[6][12];
 
-    for (int i = 0; i <= n; i++) {
-        for (int j = 0; j <= wx; j++) {
-            if (i == 0 || j == 0) {
-                dp[i][j] = 0;
-            } else {
-                int notTake = dp[i - 1][j];
-                int take = -1;
-
-                if (w[i - 1] <= j) {
-                    take = v[i - 1] + dp[i - 1][j - w[i - 1]];
-                }
-
-                dp[i][j] = (take > notTake) ? take : notTake;
-            }
-        }
-    }
+    buildDPTable(dp, w, v, n, wx);
 
     int *x = new int[n];
-    for (int i = 0; i < n; i++) x[i] = 0;
-
-    int j = wx;
-    for (int i = n; i >= 1; i--) {
-        if (dp[i][j] != dp[i - 1][j]) {
-            x[i - 1] = 1;
-            j -= w[i - 1];
-        }
-    }
+    reconstructChoice(x, dp, w, n, wx);
 
     return x;
+}
+
+int main()
+{
+    int n = 5;
+    int wx = 11;
+    int w[5] = { 1, 2, 5, 6, 7 };
+    int v[5] = { 1, 6, 18, 22, 28 };
+    int *x = KnapsackDP(w, v, n, wx);
+
+    for (int i = 0; i < n; i++) {
+        printf("%d ", x[i]);
+    }
+
+    return 0;
 }
